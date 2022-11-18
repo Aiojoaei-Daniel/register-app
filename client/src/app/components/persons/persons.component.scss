@@ -1,0 +1,24 @@
+.car-container {
+  display: flex;
+}
+
+.car-container {
+  span {
+    width: 25%;
+  }
+}
+
+.cars-header {
+  .first-headers-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5px 0;
+  }
+
+  .second-headers-container {
+    margin: 5px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

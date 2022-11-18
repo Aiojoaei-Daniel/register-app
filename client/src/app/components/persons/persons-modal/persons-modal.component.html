@@ -1,0 +1,97 @@
+<div class="modal-header">
+  <h4 class="modal-title col-12 text-center">
+    {{ id_person ? "Modificare" : "Adăugare" }} informație
+  </h4>
+</div>
+<form action="" ngNativeValidate (ngSubmit)="save()">
+  <div class="modal-body m-4">
+    <div class="row">
+      <label class="col-2 control-label">Nume*</label>
+      <div class="col-8">
+        <input
+          type="text"
+          name="firstName"
+          required
+          [(ngModel)]="modal.firstName"
+          class="form-control"
+          placeholder="Nume..."
+          maxlength="200"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-2 control-label">Prenume*</label>
+      <div class="col-8">
+        <input
+          type="text"
+          required
+          name="lastName"
+          [(ngModel)]="modal.lastName"
+          class="form-control"
+          placeholder="Prenume..."
+          maxlength="200"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-2 control-label">CNP*</label>
+      <span class="col-8">
+        <input
+          type="text"
+          required
+          name="personalId"
+          [(ngModel)]="modal.personalId"
+          class="form-control"
+          placeholder="Cnp..."
+          maxlength="200"
+          (keyup)="getAge()"
+        />
+      </span>
+      <span class="col-2 p-0">{{ modal.personalId.length }}/13 caractere</span>
+    </div>
+
+    <div class="row">
+      <label class="col-2 control-label">Varsta*</label>
+      <div class="col-8">
+        <input
+          type="number"
+          required
+          name="age"
+          value="modal.age"
+          [(ngModel)]="modal.age"
+          class="form-control"
+          placeholder="Vârsta..."
+          maxlength="200"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-2 control-label">Masini*</label>
+      <div class="col-8">
+        <ng-select
+          name="cars"
+          required
+          bindLabel="brand"
+          [multiple]="true"
+          [items]="carOptions"
+          [(ngModel)]="modal.cars"
+          placeholder="Mașini deținute..."
+          required
+        >
+        </ng-select>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="activeModal.dismiss()"
+    >
+      Renunță
+    </button>
+    <button type="submit" class="btn btn-success">Salvează</button>
+  </div>
+</form>
