@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
-import { ERRORS, TOAST, PATH, CAR_OPTIONS } from '../copy';
+import { ERRORS, TOAST, PATH } from '../copy';
 
 import { checkModalInputs, getTax, processesCarData } from '../utils';
 
@@ -22,8 +22,6 @@ export class CarsModalComponent implements OnInit {
     cc: 0,
     tax: 50,
   } as any;
-
-  carOptions: any[] = CAR_OPTIONS;
 
   constructor(
     private _spinner: NgxSpinnerService,
@@ -55,13 +53,14 @@ export class CarsModalComponent implements OnInit {
 
   save(): void {
     this._spinner.show();
-    const car = processesCarData(this.modal);
-    const errorMessage: any = checkModalInputs(car);
+    const errorMessage: any = checkModalInputs(this.modal);
 
     if (errorMessage) {
       this._spinner.hide();
       this.toastr.error(errorMessage);
     } else {
+      const car = processesCarData(this.modal);
+
       if (!this.id_car) {
         axios
           .post(`/api/${PATH}`, car)

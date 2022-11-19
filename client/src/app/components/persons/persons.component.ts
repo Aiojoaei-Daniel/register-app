@@ -27,6 +27,8 @@ export class PersonsComponent implements OnInit {
   faChevronUp = faChevronUp;
 
   limit: number = 70;
+  showBackTop: string = '';
+
   persons: any = [];
   filteredPersons: any = [];
   filters = {
@@ -35,7 +37,6 @@ export class PersonsComponent implements OnInit {
     age: '',
     cars: '',
   };
-  showBackTop: string = '';
 
   @HostListener('document: keyup', [`$event`])
   handleDeleteEvent(event: KeyboardEvent) {
@@ -109,12 +110,9 @@ export class PersonsComponent implements OnInit {
   };
 
   onSearch() {
-    console.log(this.filters);
-
     const filteredPersons = filterPersons(this.filteredPersons, this.filters);
 
     this.filteredPersons = filteredPersons;
-    console.log(filteredPersons);
   }
 
   deleteFilters() {

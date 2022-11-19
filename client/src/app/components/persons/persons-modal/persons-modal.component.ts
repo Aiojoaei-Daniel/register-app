@@ -11,6 +11,7 @@ import {
   checkModalInputs,
 } from '../utils';
 import { ERRORS, TOAST, PATH, CAR_OPTIONS } from './../copy';
+import { processesPersonData } from './../utils/processesPersonData';
 
 @Component({
   selector: 'app-persons-modal',
@@ -71,11 +72,11 @@ export class PersonsModalComponent implements OnInit {
       this._spinner.hide();
       this.toastr.error(errorMessage);
     } else {
-      this.modal = { ...this.modal, cars: JSON.stringify(this.modal.cars) };
+      const person = processesPersonData(this.modal);
 
       if (!this.id_person) {
         axios
-          .post(`/api/${PATH}`, this.modal)
+          .post(`/api/${PATH}`, person)
           .then(() => {
             this._spinner.hide();
             this.toastr.success(TOAST.SAVE.SUCCESS);
@@ -84,7 +85,7 @@ export class PersonsModalComponent implements OnInit {
           .catch(() => this.toastr.error(TOAST.SAVE.ERROR));
       } else {
         axios
-          .put(`/api/${PATH}`, this.modal)
+          .put(`/api/${PATH}`, person)
           .then(() => {
             this._spinner.hide();
             this.toastr.success(TOAST.EDIT.SUCCESS);

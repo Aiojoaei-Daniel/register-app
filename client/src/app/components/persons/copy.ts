@@ -34,7 +34,7 @@ export const CAR_OPTIONS: any[] = [
     model: 'Octavia',
     car_id: '21331231',
     productionYear: '2013',
-    tax: '1000 lei',
+    tax: '1000',
   },
   {
     brand: 'Dacia',
@@ -42,7 +42,7 @@ export const CAR_OPTIONS: any[] = [
     model: 'Sandero',
     car_id: '3123211',
     productionYear: '2010',
-    tax: '500 lei',
+    tax: '500',
   },
   {
     brand: 'BMW',
@@ -50,6 +50,6 @@ export const CAR_OPTIONS: any[] = [
     model: 'X6',
     car_id: '33121231',
     productionYear: '2020',
-    tax: '1500 lei',
+    tax: '1500',
   },
 ];
