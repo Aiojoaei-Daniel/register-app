@@ -32,6 +32,7 @@
                       placeholder="Căutare masina..."
                       [(ngModel)]="searchValues.cars"
                       (keyup)="onSearch(searchCars.value, searchCars.name)"
+                      autocomplete="off"
                     />
                   </th>
                 </span>
@@ -54,6 +55,7 @@
                 placeholder="Căutare dupa nume..."
                 [(ngModel)]="searchValues.name"
                 (keyup)="onSearch(searchName.value, searchName.name)"
+                autocomplete="off"
               />
             </th>
             <th>
@@ -64,6 +66,7 @@
                 class="form-control input-xs"
                 [(ngModel)]="searchValues.personalId"
                 (keyup)="onSearch(searchId.value, searchId.name)"
+                autocomplete="off"
               />
             </th>
             <th>
@@ -74,6 +77,7 @@
                 class="form-control input-xs"
                 [(ngModel)]="searchValues.age"
                 (keyup)="onSearch(searchAge.value, searchAge.name)"
+                autocomplete="off"
               />
             </th>
           </tr>
