@@ -22,7 +22,7 @@
             <th width="60px">Anul fabricatiei</th>
             <th width="60px">Capacitatea cilindrica</th>
             <th width="60px">Taxa de impozit (lei)</th>
-            <th rowspan="2" width="50px">Modifica / Sterge</th>
+            <th width="50px">Modifica / Sterge</th>
           </tr>
           <tr>
             <th>
@@ -31,8 +31,9 @@
                 name="brand"
                 class="form-control input-xs"
                 placeholder="Căutare dupa marca..."
-                [(ngModel)]="searchValues.brand"
-                (keyup)="onSearch(searchBrand.value, searchBrand.name)"
+                [(ngModel)]="filters.brand"
+                (keyup)="onSearch()"
+                autocomplete="off"
               />
             </th>
             <th>
@@ -41,8 +42,9 @@
                 name="model"
                 placeholder="Căutare dupa model..."
                 class="form-control input-xs"
-                [(ngModel)]="searchValues.model"
-                (keyup)="onSearch(searchModel.value, searchModel.name)"
+                [(ngModel)]="filters.model"
+                (keyup)="onSearch()"
+                autocomplete="off"
               />
             </th>
             <th>
@@ -51,13 +53,9 @@
                 name="productionYear"
                 placeholder="Căutare dupa anul de productie..."
                 class="form-control input-xs"
-                [(ngModel)]="searchValues.productionYear"
-                (keyup)="
-                  onSearch(
-                    searchProductionYear.value,
-                    searchProductionYear.name
-                  )
-                "
+                [(ngModel)]="filters.productionYear"
+                (keyup)="onSearch()"
+                autocomplete="off"
               />
             </th>
             <th>
@@ -66,8 +64,9 @@
                 name="cc"
                 placeholder="Căutare dupa capacitatea cilindrica..."
                 class="form-control input-xs"
-                [(ngModel)]="searchValues.cc"
-                (keyup)="onSearch(searchCc.value, searchCc.name)"
+                [(ngModel)]="filters.cc"
+                (keyup)="onSearch()"
+                autocomplete="off"
               />
             </th>
             <th>
@@ -76,9 +75,15 @@
                 name="tax"
                 placeholder="Căutare dupa taxa..."
                 class="form-control input-xs"
-                [(ngModel)]="searchValues.tax"
-                (keyup)="onSearch(searchTax.value, searchTax.name)"
+                [(ngModel)]="filters.tax"
+                autocomplete="off"
+                (keyup)="onSearch()"
               />
+            </th>
+            <th>
+              <button class="btn btn-warning" (click)="deleteFilters()">
+                Sterge filtrele
+              </button>
             </th>
           </tr>
         </thead>

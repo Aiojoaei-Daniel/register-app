@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   faPlus,
@@ -29,7 +29,7 @@ export class CarsComponent implements OnInit {
   limit: number = 70;
   cars: any = [];
   filteredCars: any = [];
-  searchValues = {
+  filters = {
     brand: '',
     model: '',
     productionYear: '',
@@ -37,6 +37,14 @@ export class CarsComponent implements OnInit {
     tax: '',
   };
   showBackTop: string = '';
+
+  @HostListener('document:keyup', ['$event'])
+  handleDeleteKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'Backspace') {
+      this.filteredCars = [...this.cars];
+      this.onSearch();
+    }
+  }
 
   constructor(
     private _modal: NgbModal,
@@ -96,16 +104,22 @@ export class CarsComponent implements OnInit {
     });
   };
 
-  onSearch(value: any, key: string) {
-    const { filteredCars, searchValues } = filterCars(
-      value,
-      key,
-      this.cars,
-      this.searchValues
-    );
+  onSearch() {
+    const filteredCars = filterCars(this.filteredCars, this.filters);
 
     this.filteredCars = filteredCars;
-    this.searchValues = searchValues;
+  }
+
+  deleteFilters() {
+    this.filters = {
+      brand: '',
+      model: '',
+      productionYear: '',
+      cc: '',
+      tax: '',
+    };
+
+    this.filteredCars = [...this.cars];
   }
 
   onResize(): void {

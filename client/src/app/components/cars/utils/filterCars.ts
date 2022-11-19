@@ -1,75 +1,21 @@
-export const filterCars = (
-  value: any,
-  key: string,
-  cars: any,
-  searchValuesInput: any
-) => {
-  let filteredCars: any = [];
-  let searchValues: any = {};
+export const filterCars = (cars: any, searchedValuesInput: any) => {
+  let filteredCars: any = cars;
 
-  switch (key) {
-    case 'brand':
-      filteredCars = cars.filter((car: any) =>
-        car.brand.toLowerCase().includes(value.toLowerCase())
-      );
-      searchValues = {
-        brand: searchValuesInput.brand,
-        model: '',
-        productionYear: '',
-        cc: '',
-        tax: '',
-      };
-      break;
-    case 'model':
-      filteredCars = cars.filter((car: any) =>
-        car.model.toLowerCase().includes(value.toLowerCase())
-      );
-      searchValues = {
-        brand: '',
-        model: searchValuesInput.model,
-        productionYear: '',
-        cc: '',
-        tax: '',
-      };
-      break;
-    case 'productionYear':
-      filteredCars = cars.filter((car: any) =>
-        car.productionYear.toLowerCase().includes(value.toLowerCase())
-      );
-      searchValues = {
-        brand: '',
-        model: '',
-        productionYear: searchValues.productionYear,
-        cc: '',
-        tax: '',
-      };
-      break;
-    case 'cc':
-      filteredCars = cars.filter((car: any) =>
-        JSON.stringify(car.cc).toLowerCase().includes(value.toLowerCase())
-      );
-      searchValues = {
-        brand: '',
-        model: '',
-        productionYear: '',
-        cc: searchValuesInput.cc,
-        tax: '',
-      };
-      break;
-    case 'tax':
-      filteredCars = cars.filter((car: any) =>
-        JSON.stringify(car.tax).toLowerCase().includes(value.toLowerCase())
-      );
-      searchValues = {
-        brand: '',
-        model: '',
-        productionYear: '',
-        cc: '',
-        tax: searchValuesInput.tax,
-      };
-      break;
-    default:
-      break;
+  let nameProperties = ['brand', 'model', 'productionYear', 'cc', 'tax'];
+
+  for (let property of nameProperties) {
+    filteredCars = filteredCars.filter((car: any) => {
+      if (typeof car[property] === 'string') {
+        return car[property]
+          .toLowerCase()
+          .includes(searchedValuesInput[property].toLowerCase());
+      } else {
+        return JSON.stringify(car[property])
+          .toLowerCase()
+          .includes(searchedValuesInput[property].toLowerCase());
+      }
+    });
   }
-  return { filteredCars, searchValues };
+
+  return filteredCars;
 };
