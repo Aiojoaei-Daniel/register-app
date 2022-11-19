@@ -66,7 +66,7 @@ module.exports = function getModels(sequelize, Sequelize) {
 
   if (syncTables.length && process.env.RUN_CRON === "true") {
     _.each(syncTables, (file) => {
-      console.info(file, typeof file);
+      console.info(file);
       file.sync({ alter: true, logging: false });
     });
   }

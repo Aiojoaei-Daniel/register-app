@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   faPlus,
@@ -29,13 +29,21 @@ export class PersonsComponent implements OnInit {
   limit: number = 70;
   persons: any = [];
   filteredPersons: any = [];
-  searchValues = {
+  filters = {
     name: '',
     personalId: '',
     age: '',
     cars: '',
   };
   showBackTop: string = '';
+
+  @HostListener('document: keyup', [`$event`])
+  handleDeleteEvent(event: KeyboardEvent) {
+    if (event.key === 'Backspace') {
+      this.filteredPersons = [...this.persons];
+      this.onSearch();
+    }
+  }
 
   constructor(
     private _modal: NgbModal,
@@ -100,16 +108,24 @@ export class PersonsComponent implements OnInit {
     });
   };
 
-  onSearch(value: any, key: string) {
-    const { filteredPersons, searchValues } = filterPersons(
-      value,
-      key,
-      this.persons,
-      this.searchValues
-    );
+  onSearch() {
+    console.log(this.filters);
+
+    const filteredPersons = filterPersons(this.filteredPersons, this.filters);
 
     this.filteredPersons = filteredPersons;
-    this.searchValues = searchValues;
+    console.log(filteredPersons);
+  }
+
+  deleteFilters() {
+    this.filters = {
+      name: '',
+      personalId: '',
+      age: '',
+      cars: '',
+    };
+
+    this.filteredPersons = [...this.persons];
   }
 
   onResize(): void {

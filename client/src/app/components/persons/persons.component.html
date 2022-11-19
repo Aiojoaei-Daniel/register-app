@@ -30,8 +30,8 @@
                       #searchCars
                       class="form-control input-xs"
                       placeholder="Căutare masina..."
-                      [(ngModel)]="searchValues.cars"
-                      (keyup)="onSearch(searchCars.value, searchCars.name)"
+                      [(ngModel)]="filters.cars"
+                      (keyup)="onSearch()"
                       autocomplete="off"
                     />
                   </th>
@@ -44,7 +44,7 @@
                 <span> Taxa de impozit (lei)</span>
               </div>
             </th>
-            <th rowspan="2" width="70px">Modifica / Sterge</th>
+            <th rowspan="1" width="70px">Modifica / Sterge</th>
           </tr>
           <tr>
             <th>
@@ -53,8 +53,8 @@
                 name="name"
                 class="form-control input-xs"
                 placeholder="Căutare dupa nume..."
-                [(ngModel)]="searchValues.name"
-                (keyup)="onSearch(searchName.value, searchName.name)"
+                [(ngModel)]="filters.name"
+                (keyup)="onSearch()"
                 autocomplete="off"
               />
             </th>
@@ -64,8 +64,8 @@
                 name="personalId"
                 placeholder="Căutare cnp..."
                 class="form-control input-xs"
-                [(ngModel)]="searchValues.personalId"
-                (keyup)="onSearch(searchId.value, searchId.name)"
+                [(ngModel)]="filters.personalId"
+                (keyup)="onSearch()"
                 autocomplete="off"
               />
             </th>
@@ -75,10 +75,15 @@
                 name="age"
                 placeholder="Căutare varsta..."
                 class="form-control input-xs"
-                [(ngModel)]="searchValues.age"
-                (keyup)="onSearch(searchAge.value, searchAge.name)"
+                [(ngModel)]="filters.age"
+                (keyup)="onSearch()"
                 autocomplete="off"
               />
+            </th>
+            <th>
+              <button class="btn btn-warning" (click)="deleteFilters()">
+                Sterge filtrele
+              </button>
             </th>
           </tr>
         </thead>

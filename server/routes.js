@@ -5,12 +5,9 @@ module.exports = (app) => {
   const path = require("path");
   const errors = require("./errors");
 
-  console.log("la routes ala solo");
-
   /* LOGIN */
-  app.use("/api/information", require("./routes/information")(app));
   app.use("/api/persons", require("./routes/persons")(app));
-  app.use("/api/cars", require("./routes/cars")(app)); //! ?
+  app.use("/api/cars", require("./routes/cars")(app));
 
   app
     .route("*/:url(api|auth|components|app|bower_components|assets)/*")

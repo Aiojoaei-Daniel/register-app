@@ -1,61 +1,25 @@
-export const filterPersons = (
-  value: any,
-  key: string,
-  persons: any,
-  searchValuesInput: any
-) => {
-  let filteredPersons: any = [];
-  let searchValues: any = {};
+export const filterPersons = (persons: any, searchedValuesInput: any) => {
+  let filteredPersons: any = persons;
 
-  switch (key) {
-    case 'name':
-      filteredPersons = persons.filter((person: any) =>
-        (person.firstName + ' ' + person.lastName)
+  let nameProperties = ['name', 'personalId', 'age', 'cars'];
+
+  for (let property of nameProperties) {
+    filteredPersons = filteredPersons.filter((person: any) => {
+      if (property === 'name') {
+        return (person.firstName + ' ' + person.lastName)
           .toLowerCase()
-          .includes(value.toLowerCase())
-      );
-      searchValues = {
-        name: searchValuesInput.name,
-        personalId: '',
-        age: '',
-        cars: '',
-      };
-      break;
-    case 'personalId':
-      filteredPersons = persons.filter((person: any) =>
-        person.personalId.toLowerCase().includes(value.toLowerCase())
-      );
-      searchValues = {
-        name: '',
-        personalId: searchValuesInput.personalId,
-        age: '',
-        cars: '',
-      };
-      break;
-    case 'age':
-      filteredPersons = persons.filter((person: any) =>
-        JSON.stringify(person.age).toLowerCase().includes(value.toLowerCase())
-      );
-      searchValues = {
-        name: '',
-        personalId: '',
-        age: searchValuesInput.age,
-        cars: '',
-      };
-      break;
-    case 'cars':
-      filteredPersons = persons.filter((person: any) =>
-        JSON.stringify(person.cars).toLowerCase().includes(value.toLowerCase())
-      );
-      searchValues = {
-        name: '',
-        personalId: '',
-        age: '',
-        cars: searchValuesInput.cars,
-      };
-      break;
-    default:
-      break;
+          .includes(searchedValuesInput[property].toLowerCase());
+      } else if (typeof person[property] === 'string') {
+        return person[property]
+          .toLowerCase()
+          .includes(searchedValuesInput[property].toLowerCase());
+      } else {
+        return JSON.stringify(person[property])
+          .toLowerCase()
+          .includes(searchedValuesInput[property].toLowerCase());
+      }
+    });
   }
-  return { filteredPersons, searchValues };
+
+  return filteredPersons;
 };
