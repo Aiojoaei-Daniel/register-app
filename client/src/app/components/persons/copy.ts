@@ -84,13 +84,11 @@ export const SEARCH_FILTERS = [
   },
 ];
 
-export const TABLE_DATA = [
-  { width: '49px', property: 'id' },
-  { width: '99px', property: 'brand' },
-  { width: '98px', property: 'model' },
-  { width: '59px', property: 'productionYear' },
-  { width: '65px', property: 'cc' },
-  { width: '59px', property: 'tax' },
+export const CAR_FILTERS = [
+  { name: 'carName', placeholder: 'Căutare dupa denumirea mașinii...' },
+  { name: 'productionYear', placeholder: 'Căutare dupa anul de productie...' },
+  { name: 'cc', placeholder: 'Căutare dupa capacitatea cilindrică...' },
+  { name: 'tax', placeholder: 'Căutare dupa taxă...' },
 ];
 
 export const TABLE_TEXT = {
@@ -99,44 +97,6 @@ export const TABLE_TEXT = {
   BTN_REMOVE_FILTERS: 'Șterge filtrele',
   NO_DATA: 'Date inexistente!',
 };
-
-export const MODAL_INPUTS = [
-  {
-    type: 'text',
-    name: 'brand',
-    property: 'brand',
-    placeholder: 'Marcă...',
-    label: 'Marcă*',
-  },
-  {
-    type: 'text',
-    name: 'model',
-    property: 'model',
-    placeholder: 'Model...',
-    label: 'Model*',
-  },
-  {
-    type: 'number',
-    name: 'productionYear',
-    property: 'productionYear',
-    placeholder: 'Anul de fabricație...',
-    label: 'Anul de fabricație*',
-  },
-  {
-    type: 'number',
-    name: 'cc',
-    property: 'cc',
-    placeholder: 'Capacitatea cilindrică...',
-    label: 'Capacitatea cilindrică*',
-  },
-  {
-    type: 'number',
-    name: 'tax',
-    property: 'tax',
-    placeholder: 'Taxa de impozit...',
-    label: 'Taxa de impozit*',
-  },
-];
 
 export const MODAL_TEXT = {
   EDIT: 'Modificare informație',

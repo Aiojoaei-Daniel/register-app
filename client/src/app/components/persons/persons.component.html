@@ -22,10 +22,10 @@
             <th width="200px">{{ headersTableBody.name }}</th>
             <th width="100px">{{ headersTableBody.personalId }}</th>
             <th width="60px">{{ headersTableBody.age }}</th>
-            <th rowspan="3" width="400px" height="60px" class="cars-header">
+            <th rowspan="1" width="400px" height="60px" class="cars-header">
               <div class="first-headers-container">
                 <span>{{ headersTableBody.cars }}</span>
-                <span>
+                <!-- <span>
                   <th>
                     <input
                       name="cars"
@@ -36,12 +36,13 @@
                       autocomplete="off"
                     />
                   </th>
-                </span>
+                </span> -->
               </div>
               <div width="100%" class="second-headers-container">
-                <span *ngFor="let header of headersCarsOption">{{
-                  header.text
-                }}</span>
+                <span *ngFor="let header of headersCarsOption"
+                  >{{ header.text }}
+                  <!-- <input type="text" /> -->
+                </span>
               </div>
             </th>
             <th rowspan="1" width="70px">{{ headersTableBody.editDelete }}</th>
@@ -53,6 +54,17 @@
                 placeholder="{{ search.placeholder }}"
                 [(ngModel)]="filters[search.property]"
                 class="form-control input-xs"
+                (keyup)="onSearch()"
+                autocomplete="off"
+              />
+            </th>
+            <th>
+              <input
+                *ngFor="let filter of carFilters"
+                name="{{ filter.name }}"
+                placeholder="{{ filter.placeholder }}"
+                [(ngModel)]="filters.cars[filter.name]"
+                style="width: 23%"
                 (keyup)="onSearch()"
                 autocomplete="off"
               />

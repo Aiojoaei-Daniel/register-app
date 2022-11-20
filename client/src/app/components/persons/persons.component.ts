@@ -22,6 +22,7 @@ import {
   HEADERS_TABLE_BODY,
   SEARCH_FILTERS,
   TABLE_TEXT,
+  CAR_FILTERS,
 } from './copy';
 
 @Component({
@@ -40,12 +41,25 @@ export class PersonsComponent implements OnInit {
 
   persons: any = [];
   filteredPersons: any = [];
+  // filters: any = {
+  //   name: '',
+  //   personalId: '',
+  //   age: '',
+  //   cars: '',
+  // };
   filters: any = {
     name: '',
     personalId: '',
     age: '',
-    cars: '',
+    cars: {
+      carName: '',
+      productionYear: '',
+      cc: '',
+      tax: '',
+    },
   };
+
+  carFilters: any = CAR_FILTERS;
 
   headersCarsOption: any = HEADERS_CARS_OPTION;
   headersTableBody: any = HEADERS_TABLE_BODY;

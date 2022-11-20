@@ -19,3 +19,12 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+tbody {
+  tr:hover {
+    background-color: darkkhaki;
+  }
+  tr {
+    height: 2.5rem;
+  }
+}

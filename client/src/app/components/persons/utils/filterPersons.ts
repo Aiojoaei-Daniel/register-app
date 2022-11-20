@@ -1,23 +1,39 @@
-export const filterPersons = (persons: any, searchedValuesInput: any) => {
+export const filterPersons = (persons: any, inputFilters: any) => {
   let filteredPersons: any = persons;
 
-  let nameProperties = ['name', 'personalId', 'age', 'cars'];
+  const filters: any = ['name', 'personalId', 'age'];
+  const carFilters: any = ['carName', 'productionYear', 'cc', 'tax'];
 
-  for (let property of nameProperties) {
+  for (let filter of filters) {
     filteredPersons = filteredPersons.filter((person: any) => {
-      if (property === 'name') {
+      if (filter === 'name') {
         return (person.firstName + ' ' + person.lastName)
           .toLowerCase()
-          .includes(searchedValuesInput[property].toLowerCase());
-      } else if (typeof person[property] === 'string') {
-        return person[property]
+          .includes(inputFilters[filter].toLowerCase());
+      } else if (typeof person[filter] === 'string') {
+        return person[filter]
           .toLowerCase()
-          .includes(searchedValuesInput[property].toLowerCase());
-      } else {
-        return JSON.stringify(person[property])
+          .includes(inputFilters[filter].toLowerCase());
+      } else if (typeof person[filter] === 'number') {
+        return JSON.stringify(person[filter])
           .toLowerCase()
-          .includes(searchedValuesInput[property].toLowerCase());
+          .includes(inputFilters[filter].toLowerCase());
       }
+    });
+  }
+
+  for (let carFilter of carFilters) {
+    filteredPersons = filteredPersons.filter((person: any) => {
+      return person.cars.some((car: any) => {
+        if (carFilter === 'carName') {
+          return (car.brand + ' ' + car.model)
+            .toLowerCase()
+            .includes(inputFilters.cars.carName.toLowerCase());
+        }
+        return JSON.stringify(car[carFilter])
+          .toLowerCase()
+          .includes(inputFilters.cars[carFilter].toLowerCase());
+      });
     });
   }
 
