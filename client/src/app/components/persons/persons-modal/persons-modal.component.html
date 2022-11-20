@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title col-12 text-center">
-    {{ id_person ? "Modificare" : "Adăugare" }} informație
+    {{ id_person ? modalText.EDIT : modalText.ADD }}
   </h4>
 </div>
 <form action="" ngNativeValidate (ngSubmit)="save()">
@@ -94,8 +94,8 @@
       class="btn btn-outline-dark"
       (click)="activeModal.dismiss()"
     >
-      Renunță
+      {{ modalText.CANCEL }}
     </button>
-    <button type="submit" class="btn btn-success">Salvează</button>
+    <button type="submit" class="btn btn-success">{{ modalText.SAVE }}</button>
   </div>
 </form>

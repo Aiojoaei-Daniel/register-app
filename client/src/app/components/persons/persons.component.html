@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-4">
       <button class="btn btn-primary btn-sm" type="button" (click)="addEdit()">
-        <fa-icon [icon]="faPlus"></fa-icon> Adaugă
+        <fa-icon [icon]="faPlus"></fa-icon> {{ tableText.BTN_ADD }}
       </button>
     </div>
     <div class="col-4">
-      <h4 class="text-center">Persoane</h4>
+      <h4 class="text-center">{{ tableText.TITLE }}</h4>
     </div>
     <div class="col-4"></div>
   </div>
@@ -16,18 +16,19 @@
       <table class="table table-striped table-hover">
         <thead>
           <tr class="table-bordered">
-            <th width="60px" rowspan="2">Nr. Crt.</th>
-            <th width="200px">Nume / Prenume</th>
-            <th width="100px">CNP</th>
-            <th width="60px">Varsta</th>
+            <th width="60px" rowspan="2">
+              {{ headersTableBody.currentNumber }}
+            </th>
+            <th width="200px">{{ headersTableBody.name }}</th>
+            <th width="100px">{{ headersTableBody.personalId }}</th>
+            <th width="60px">{{ headersTableBody.age }}</th>
             <th rowspan="3" width="400px" height="60px" class="cars-header">
               <div class="first-headers-container">
-                <span>Lista masinilor aflate in proprietate</span>
+                <span>{{ headersTableBody.cars }}</span>
                 <span>
                   <th>
                     <input
                       name="cars"
-                      #searchCars
                       class="form-control input-xs"
                       placeholder="Căutare masina..."
                       [(ngModel)]="filters.cars"
@@ -38,51 +39,27 @@
                 </span>
               </div>
               <div width="100%" class="second-headers-container">
-                <span>Denumire marca / denumire model </span>
-                <span> Anul fabricatiei </span>
-                <span> Capacitatea cilindrica </span>
-                <span> Taxa de impozit (lei)</span>
+                <span *ngFor="let header of headersCarsOption">{{
+                  header.text
+                }}</span>
               </div>
             </th>
-            <th rowspan="1" width="70px">Modifica / Sterge</th>
+            <th rowspan="1" width="70px">{{ headersTableBody.editDelete }}</th>
           </tr>
           <tr>
-            <th>
+            <th *ngFor="let search of searchFilters">
               <input
-                #searchName
-                name="name"
+                name="{{ search.name }}"
+                placeholder="{{ search.placeholder }}"
+                [(ngModel)]="filters[search.property]"
                 class="form-control input-xs"
-                placeholder="Căutare dupa nume..."
-                [(ngModel)]="filters.name"
-                (keyup)="onSearch()"
-                autocomplete="off"
-              />
-            </th>
-            <th>
-              <input
-                #searchId
-                name="personalId"
-                placeholder="Căutare cnp..."
-                class="form-control input-xs"
-                [(ngModel)]="filters.personalId"
-                (keyup)="onSearch()"
-                autocomplete="off"
-              />
-            </th>
-            <th>
-              <input
-                #searchAge
-                name="age"
-                placeholder="Căutare varsta..."
-                class="form-control input-xs"
-                [(ngModel)]="filters.age"
                 (keyup)="onSearch()"
                 autocomplete="off"
               />
             </th>
             <th>
               <button class="btn btn-warning" (click)="deleteFilters()">
-                Sterge filtrele
+                {{ tableText.BTN_REMOVE_FILTERS }}
               </button>
             </th>
           </tr>
@@ -166,7 +143,7 @@
               *ngIf="!persons.length"
               class="text-center fw-bold"
             >
-              <td>Date inexistente!</td>
+              <td>{{ tableText.NO_DATA }}</td>
             </tr>
           </tbody>
         </table>

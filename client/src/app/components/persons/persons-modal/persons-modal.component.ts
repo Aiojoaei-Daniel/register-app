@@ -10,7 +10,7 @@ import {
   getPersonAge,
   checkModalInputs,
 } from '../utils';
-import { ERRORS, TOAST, PATH, CAR_OPTIONS } from './../copy';
+import { ERRORS, TOAST, PATH, CAR_OPTIONS, MODAL_TEXT } from './../copy';
 import { processesPersonData } from './../utils/processesPersonData';
 
 @Component({
@@ -29,6 +29,7 @@ export class PersonsModalComponent implements OnInit {
   } as any;
 
   carOptions: any[] = CAR_OPTIONS;
+  modalText: any = MODAL_TEXT;
 
   constructor(
     private _spinner: NgxSpinnerService,
