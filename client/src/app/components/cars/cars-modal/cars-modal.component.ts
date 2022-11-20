@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
-import { ERRORS, TOAST, PATH } from '../copy';
+import { ERRORS, TOAST, PATH, MODAL_INPUTS, MODAL_TEXT } from '../copy';
 
 import { checkModalInputs, getTax, processesCarData } from '../utils';
 
@@ -15,13 +15,16 @@ import { checkModalInputs, getTax, processesCarData } from '../utils';
 export class CarsModalComponent implements OnInit {
   @Input() id_car: number | undefined;
 
-  modal = {
+  modal: any = {
     brand: '',
     model: '',
     productionYear: 2000,
     cc: 0,
     tax: 50,
   } as any;
+
+  modalInputsText: any = MODAL_INPUTS;
+  modalText: any = MODAL_TEXT;
 
   constructor(
     private _spinner: NgxSpinnerService,

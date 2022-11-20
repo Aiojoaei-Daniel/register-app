@@ -13,7 +13,16 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { filterCars } from './utils';
-import { ERRORS, CONFIRM_DIALOG, TOAST, PATH } from './copy';
+import {
+  ERRORS,
+  CONFIRM_DIALOG,
+  TOAST,
+  PATH,
+  HEADERS,
+  SEARCH_FILTERS,
+  TABLE_TEXT,
+  TABLE_DATA,
+} from './copy';
 
 @Component({
   selector: 'app-cars',
@@ -27,16 +36,22 @@ export class CarsComponent implements OnInit {
   faChevronUp = faChevronUp;
 
   limit: number = 70;
+  showBackTop: string = '';
+
   cars: any = [];
   filteredCars: any = [];
-  filters = {
+  filters: any = {
     brand: '',
     model: '',
     productionYear: '',
     cc: '',
     tax: '',
   };
-  showBackTop: string = '';
+
+  headers: any = HEADERS;
+  searchFilters: any[] = SEARCH_FILTERS;
+  tableText: any = TABLE_TEXT;
+  tableData: any = TABLE_DATA;
 
   @HostListener('document:keyup', ['$event'])
   handleDeleteKeyboardEvent(event: KeyboardEvent) {
