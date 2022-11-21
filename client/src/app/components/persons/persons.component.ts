@@ -41,12 +41,7 @@ export class PersonsComponent implements OnInit {
 
   persons: any = [];
   filteredPersons: any = [];
-  // filters: any = {
-  //   name: '',
-  //   personalId: '',
-  //   age: '',
-  //   cars: '',
-  // };
+
   filters: any = {
     name: '',
     personalId: '',

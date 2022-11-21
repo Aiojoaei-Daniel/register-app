@@ -11,7 +11,7 @@ export const checkModalInputs = (person: any) => {
     /[a-z]/i.test(person.personalId)
   )
     errors.push('  *Cnp');
-  if (person.age < 18) errors.push('  *Varsta');
+  if (person.age < 18 || person.age > 200) errors.push('  *Varsta');
   if (cars.length < 1) errors.push('  *Masini');
 
   for (let error of errors) {

@@ -56,6 +56,7 @@
                 class="form-control input-xs"
                 (keyup)="onSearch()"
                 autocomplete="off"
+                style="margin: 5px; width: 90%"
               />
             </th>
             <th>
@@ -64,7 +65,7 @@
                 name="{{ filter.name }}"
                 placeholder="{{ filter.placeholder }}"
                 [(ngModel)]="filters.cars[filter.name]"
-                style="width: 23%"
+                style="width: 20%; margin: 10px 10px"
                 (keyup)="onSearch()"
                 autocomplete="off"
               />

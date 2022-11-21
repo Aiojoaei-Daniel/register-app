@@ -1,1 +1,13 @@
-
+thead {
+  tr {
+    height: 2.5rem;
+  }
+}
+tbody {
+  tr:hover {
+    background-color: darkkhaki;
+  }
+  tr {
+    height: 2.5rem;
+  }
+}
